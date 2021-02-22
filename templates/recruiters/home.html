@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+
+<div class="container my-3">
+	<div class="row">
+		<div class="container col-md-3">
+			<div class="card" style="width: 18rem">
+				<img class="img-fluid" src="{{recruiter.profile_img}}" class="card-img-top" />
+				<div class="card-body">
+					<h5 class="card-title">Hi, {{recruiter.username}} !</h5>
+					<p class="card-text">{{recruiter.about}}</p>
+					<a href="/recruiters/{{recruiter.id}}" class="btn btn-success">Edit profile</a>
+					<a href="/events/new" class="btn btn-success">New Event</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container col-md-6">
+			<div class="container">
+				<h4 class="text-center">Future Events :</h4>
+				<ul>
+					{% for evt in events %}
+					<li>
+						<div class="container my-3">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title">{{evt.title}}</h5>
+
+									<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
+
+									<p style="overflow: scroll; height: 50px" class="card-text">{{evt.description}}</p>
+									{% if evt.recruiters_id == recruiter.id %}
+									<form method="POST" action="/events/{{evt.id}}/delete">
+										<button class="btn btn-danger">Delete Event</button>
+									</form>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

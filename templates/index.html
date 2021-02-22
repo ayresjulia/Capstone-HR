@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %} Get Started {% endblock %}
+<!--break-->
+{% block content %}
+<div class="container my-3">
+	<div class="row">
+		<div class="container col-6 text-center">
+		</br>
+		</br>
+		</br>
+		</br>
+            <h3>Start your job search</h3>
+			<form class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="Location" aria-label="Search" />
+				<button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        	</br>
+       
+            <h4>Create an account</h4>
+
+                 <a href="/jobseekers/signup" class="btn btn-success">jobseeker</a>  <a href="/recruiters/signup" class="btn btn-success">recruiter</a>
+		</div>
+		<div class="container col-6">
+			<img
+				class="img img-fluid"
+				src="https://images.unsplash.com/photo-1609464474585-b353aaa64dc6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1090&q=80"
+			/>
+		</div>
+	</div>
+</div>
+{% endblock %}

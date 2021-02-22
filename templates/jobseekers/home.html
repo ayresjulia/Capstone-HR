@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+
+<div class="container my-3">
+	<div class="row">
+		<div class="container col-md-3">
+			<div class="card" style="width: 18rem">
+				<img class="img-fluid" src="{{jobseeker.profile_img}}" class="card-img-top" />
+				<div class="card-body">
+					<h5 class="card-title">Hi, {{jobseeker.username}} !</h5>
+					<p class="card-text">{{jobseeker.bio}}</p>
+					<a href="/jobseekers/{{jobseeker.id}}" class="btn btn-success">Edit profile</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container col-md-6 text-center">
+			<div class="row">
+				<div class="container">
+					<form class="d-flex" method="POST">
+						<select class="form-select" aria-label="Default select example">
+							<option class="top" selected>Choose desired Job Location</option>
+							{% for c in choices %}
+							<option>{{c}}</option>
+							{% endfor %}
+						</select>
+
+						<button class="btn btn-outline-success" type="submit">Find</button>
+					</form>
+				</div>
+				<div class="container">
+					<ul>
+						{% for d in data %}
+						<li data-id="{{d.id}}">
+							<div class="container my-3">
+								<div class="card">
+									<div class="card-body">
+										<div class="card-title">{{d.title}}</div>
+										<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{d.location['display_name']}}</span>
+
+										<p style="height: 70px" class="card-text overflow-auto">{{d.description}}</p>
+										<a href="#" data-id="{{d.id}}" class="card-link favorites">Save to Favorites</a>
+										<a href="{{d.redirect_url}}" target="_blank" class="card-link">View/Apply</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

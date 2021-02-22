@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+
+<div class="container my-3">
+	<div class="row">
+		<div class="container col-6 text-center">
+		</br>
+			<div class="container">
+				<h3>Future Events</h3>
+		
+				{% if g.jobseeker %}
+				<h6 style='font-style: italic'>To modify an event, please <a class="link-success" href="/recruiters/login">log in</a> to Recruiter account.</h6>
+				{% elif g.recruiter %}
+				<h6 style='font-style: italic'>To modify an event, please <a class="link-success" href="/recruiters/home">return to your home page</a>.</h6>
+				{% endif %}
+	
+				<ul>
+					{% for evt in events %}
+					<li>
+						<div class="container my-3">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title">{{evt.title}}</h5>
+
+									<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
+
+									<p style="overflow: scroll; height: 50px" class="card-text">{{evt.description}}</p>
+									
+								</div>
+							</div>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="container col-6">
+			<img
+				class="img img-fluid"
+				src="https://images.unsplash.com/photo-1609464474585-b353aaa64dc6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1090&q=80"
+			/>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

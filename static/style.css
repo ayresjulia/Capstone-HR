@@ -1,0 +1,28 @@
+body {
+	font-family: 'Lora', serif;
+	background-color: #ecf2f8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+}
+
+/* #index-page {
+	border-radius: 10px;
+	background-image: linear-gradient(to bottom right, #ff9482, #7d77ff);
+	margin-top: 20px;
+} */
+
+.carousel-img {
+	height: 400px;
+}
+
+ul {
+	list-style-type: none;
+}
