@@ -17,35 +17,38 @@
 			<div class="row">
 				<div class="container">
 					<form class="d-flex" method="POST">
-						<select class="form-select" aria-label="Default select example">
-							<option class="top" selected>Choose desired Job Location</option>
+						<select class="form-select" id="locationOptions" name="locationOptions" aria-label="Default select example">
+							<option id="top" selected>Choose desired Job Location</option>
 							{% for c in choices %}
 							<option>{{c}}</option>
 							{% endfor %}
 						</select>
-
-						<button class="btn btn-outline-success" type="submit">Find</button>
+						<button class="btn btn-outline-success" id="showTxt">Find</button>
 					</form>
 				</div>
 				<div class="container">
-					<ul>
-						{% for d in data %}
-						<li data-id="{{d.id}}">
-							<div class="container my-3">
-								<div class="card">
-									<div class="card-body">
-										<div class="card-title">{{d.title}}</div>
-										<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{d.location['display_name']}}</span>
+					<div class="container my-3">
+						<div class="card" id="display"></div>
+					</div>
+				</div>
 
-										<p style="height: 70px" class="card-text overflow-auto">{{d.description}}</p>
-										<a href="#" data-id="{{d.id}}" class="card-link favorites">Save to Favorites</a>
-										<a href="{{d.redirect_url}}" target="_blank" class="card-link">View/Apply</a>
-									</div>
+				<p class="text-center"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+				<div class="container">
+					{% for d in data %}
+					<div data-id="{{d.id}}">
+						<div class="container my-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-title title">{{d.title}}</div>
+									<p style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted location">{{d.location['display_name']}}</p>
+									<p style="height: 70px" class="card-text overflow-auto description">{{d.description}}</p>
+									<a data-id="{{d.id}}" href="#" class="card-link favorites">Save to Favorites</a>
+									<a href="{{d.redirect_url}}" target="_blank" class="card-link">View/Apply</a>
 								</div>
 							</div>
-						</li>
-						{% endfor %}
-					</ul>
+						</div>
+					</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>

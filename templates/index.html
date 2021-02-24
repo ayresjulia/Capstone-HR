@@ -1,29 +1,53 @@
 {% extends 'base.html' %} {% block title %} Get Started {% endblock %}
 <!--break-->
 {% block content %}
-<div class="container my-3">
+<div class="container-fluid">
 	<div class="row">
-		<div class="container col-6 text-center">
-		</br>
-		</br>
-		</br>
-		</br>
-            <h3>Start your job search</h3>
-			<form class="d-flex">
-				<input class="form-control me-2" type="search" placeholder="Location" aria-label="Search" />
-				<button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        	</br>
-       
-            <h4>Create an account</h4>
-
-                 <a href="/jobseekers/signup" class="btn btn-success">jobseeker</a>  <a href="/recruiters/signup" class="btn btn-success">recruiter</a>
+		<div class="container col-8">
+			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="4000">
+						<img
+							src="https://images.unsplash.com/photo-1609464474585-b353aaa64dc6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzN8fHZpZGVvJTIwZ2FtZXxlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+							class="w-100 d-block carousel-img"
+							alt="playing together"
+						/>
+						<div class="carousel-caption d-none d-md-block bg-light">
+							<h5>Attend posted Industry events</h5>
+							<p>Get to know like-minded people and connect with Recruiters in the industry</p>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="4000">
+						<img
+							src="https://images.unsplash.com/photo-1605773527852-c546a8584ea3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
+							class="w-100 d-block carousel-img"
+							alt="mouse"
+						/>
+						<div class="carousel-caption d-none d-md-block bg-light">
+							<h5>The Right Job is there for you</h5>
+							<p>Save the jobs to Favorites to apply later while tailoring your resume</p>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 		</div>
-		<div class="container col-6">
-			<img
-				class="img img-fluid"
-				src="https://images.unsplash.com/photo-1609464474585-b353aaa64dc6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1090&q=80"
-			/>
+		<div class="container col-4 text-center my-5">
+			<h3>We provide Esport Jobs in one place!</h3>
+			<img style="width: 50px" src="https://content.invisioncic.com/p289038/monthly_2020_04/arrow-down.gif.c819a92ab7162c828e944727a545dcd7.gif" />
+			<h4>Create an account</h4>
+			<a href="/jobseekers/signup" class="btn btn-success">jobseeker</a> <a href="/recruiters/signup" class="btn btn-success">recruiter</a>
 		</div>
 	</div>
 </div>

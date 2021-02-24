@@ -2,7 +2,6 @@ from models import db, connect_db, Jobseeker, Recruiter, Event, Job, JsJobs
 from forms import AddJobseekerForm, AddRecruiterForm, LoginForm, JobseekerEditForm, RecruiterEditForm, AddEventForm
 import os
 import requests
-from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
@@ -127,15 +126,15 @@ def login():
 ##############################################################################
 # JOBSEEKER routes
 
+# # move to app.js
+# def stripHtmlTags(htmlTxt):
+#     if htmlTxt is None:
+#         return None
+#     else:
+#         return ''.join(BeautifulSoup(htmlTxt).findAll(text=True))
 
-def stripHtmlTags(htmlTxt):
-    if htmlTxt is None:
-        return None
-    else:
-        return ''.join(BeautifulSoup(htmlTxt).findAll(text=True))
 
-
-@app.route('/jobseekers/home')
+@app.route('/jobseekers/home', methods=['GET', 'POST'])
 def homepage():
     """Show current user homepage."""
 
@@ -149,6 +148,7 @@ def homepage():
         )
         res = responses.json()
         data = res['results']
+
         choices = []
 
         for d in data:
@@ -216,15 +216,6 @@ def do_login_recruiter(recruiter):
     """Log in user."""
 
     session[CURR_USER_KEY] = recruiter.id
-
-
-# def do_logout_recruiter():
-#     """Logout user."""
-
-#     session[CURR_USER_KEY] = recruiter.id
-#     if CURR_USER_KEY in session:
-
-#         del session[CURR_USER_KEY]
 
 ##############################################################################
 # RECRUITER routes
