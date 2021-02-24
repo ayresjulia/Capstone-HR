@@ -126,14 +126,6 @@ def login():
 ##############################################################################
 # JOBSEEKER routes
 
-# # move to app.js
-# def stripHtmlTags(htmlTxt):
-#     if htmlTxt is None:
-#         return None
-#     else:
-#         return ''.join(BeautifulSoup(htmlTxt).findAll(text=True))
-
-
 @app.route('/jobseekers/home', methods=['GET', 'POST'])
 def homepage():
     """Show current user homepage."""
