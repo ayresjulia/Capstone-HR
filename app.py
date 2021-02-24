@@ -1,4 +1,4 @@
-from models import db, connect_db, Jobseeker, Recruiter, Event, Job, JsJobs
+from models import db, connect_db, Jobseeker, Recruiter, Event
 from forms import AddJobseekerForm, AddRecruiterForm, LoginForm, JobseekerEditForm, RecruiterEditForm, AddEventForm
 import os
 import requests

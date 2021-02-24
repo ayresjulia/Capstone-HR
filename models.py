@@ -29,9 +29,6 @@ class Jobseeker(db.Model):
     bio = db.Column(db.Text)
     location = db.Column(db.Text)
 
-    jobs = db.relationship(
-        'Job', secondary="js_jobs", backref="jobseeker")
-
     @classmethod
     def signup(cls, first_name, last_name, username, email, password, profile_img, bio, location):
         """Sign up Jobseeker. Hashes password and adds user to system."""
@@ -64,29 +61,6 @@ class Jobseeker(db.Model):
                 return jobseeker
 
         return False
-
-
-class JsJobs(db.Model):
-    '''Link between Jobseekers and Jobs.'''
-
-    __tablename__ = 'js_jobs'
-
-    job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'), primary_key=True)
-    jobseeker_id = db.Column(db.Integer, db.ForeignKey(
-        'jobseekers.id'), primary_key=True)
-
-
-class Job(db.Model):
-    '''Jobs in the system.'''
-
-    __tablename__ = 'jobs'
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text, nullable=False, unique=True)
-    description = db.Column(db.Text, nullable=False, unique=True)
-
-    jobseekers = db.relationship(
-        'Jobseeker', secondary="js_jobs", backref="job")
 
 
 class Recruiter(db.Model):

@@ -14,9 +14,14 @@ h6 {
 }
 
 .carousel-img {
-	height: 450px;
+	height: 470px;
 }
 
 ul {
 	list-style-type: none;
+}
+
+.carousel-caption {
+	height: 100px;
+	padding: 10px;
 }
