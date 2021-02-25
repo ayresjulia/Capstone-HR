@@ -277,6 +277,8 @@ def homepage_recruiters():
         return render_template('recruiters/home.html', recruiter=recruiter, events=events)
 
     else:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
         return render_template('index.html')
 
 

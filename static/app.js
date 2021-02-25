@@ -30,6 +30,7 @@ $('#showTxt').on('click', function (e) {
 });
 
 // strip JSON API data from html tags
+
 $('.title').text(function () {
 	return $(this)
 		.text()
@@ -44,6 +45,7 @@ $('.description').text(function () {
 // save job to favorites
 $('.favorites').on('click', function (e) {
 	e.preventDefault();
+	$(this).css('color', 'green');
 	let targetdiv = $(this).closest('div');
 	let obj = targetdiv[0];
 	let gethtml = obj.innerHTML;
