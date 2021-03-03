@@ -22,6 +22,7 @@ Talisman was created to connect Recruiters and Jobseekers in the Gaming industry
 ## Installation
 
 To install all libraries and dependencies, use:
+
 ```
 pip install -r requirements.txt
 ```
