@@ -33,6 +33,8 @@ pip install -r requirements.txt
 
 ## Database Schema
 
+*in works* connect Jobseekers to events db on star click
+
 ![db_image](./static/db.png)
 
 ## User Flow
