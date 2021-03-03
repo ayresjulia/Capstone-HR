@@ -25,7 +25,7 @@ class Jobseeker(db.Model):
     email = db.Column(db.Text, nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
     profile_img = db.Column(
-        db.Text, default="/static/jobseeker.svg")
+        db.Text, default="/static/jobseeker.png")
     bio = db.Column(db.Text)
     location = db.Column(db.Text)
 
@@ -73,7 +73,7 @@ class Recruiter(db.Model):
     username = db.Column(db.Text, nullable=False, unique=True)
     company_name = db.Column(db.Text, nullable=False, unique=True)
     profile_img = db.Column(
-        db.Text, default="/static/company.svg")
+        db.Text, default="/static/company.png")
     about = db.Column(db.Text)
     password = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text)

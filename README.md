@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## Database Schema
 
-![db_image](./static/db.svg)
+![db_image](./static/db.png)
 
 ## User Flow
 
@@ -43,5 +43,5 @@ pip install -r requirements.txt
 - save jobs to favorites if not ready to apply yet
 - apply by following a link to Adzuna Job Search website
 
-![homepage_image](./static/homepage.svg)
-![events_image](./static/events.svg)
+![homepage_image](./static/homepage.png)
+![events_image](./static/events.png)
