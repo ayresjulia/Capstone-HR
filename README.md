@@ -36,12 +36,8 @@ pip install -r requirements.txt
 
 ## User Flow
 
-- choose a user path: Jobseeker or a Recruiter
-- create profile with an ability of updating it later
-- post networking events for jobseekers to see
-- search for opportunities by filtering jobs in available locations
-- save jobs to favorites if not ready to apply yet
-- apply by following a link to Adzuna Job Search website
+![userflow_image](./static/userflow0.png)
 
-![homepage_image](./static/homepage.png)
-![events_image](./static/events.png)
+![homepage_gif](./static/homepage.gif)
+![jobseeeker_gif](./static/jobseeker.gif)
+![recruiter_gif](./static/recruiter.gif)

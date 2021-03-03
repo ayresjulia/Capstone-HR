@@ -29,6 +29,8 @@ class Jobseeker(db.Model):
     bio = db.Column(db.Text)
     location = db.Column(db.Text)
 
+    events = db.relationship('Event')
+
     @classmethod
     def signup(cls, first_name, last_name, username, email, password, profile_img, bio, location):
         """Sign up Jobseeker. Hashes password and adds user to system."""
@@ -125,5 +127,8 @@ class Event(db.Model):
     location = db.Column(db.Text, nullable=False)
     recruiters_id = db.Column(db.Integer, db.ForeignKey(
         'recruiters.id', ondelete='CASCADE'), nullable=False)
+    jobseeker_id = db.Column(db.Integer, db.ForeignKey(
+        'jobseekers.id', ondelete='CASCADE'))
 
     recruiter = db.relationship('Recruiter')
+    jobseeker = db.relationship('Jobseeker')
