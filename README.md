@@ -1,10 +1,12 @@
 # Talisman Gaming Job Search App
 
-Check it out on Heroku : [url here]
+![homepage_gif](./static/homepage.gif)
+![jobseeeker_gif](./static/jobseeker.gif)
+![recruiter_gif](./static/recruiter.gif)
 
 ## Description
 
-Talisman was created to connect Recruiters and Jobseekers in the Gaming industry with ease of use. Talisman strives to create a warm and welcoming environment with an easy way for users to browse through it. Jobseekers can apply for jobs, save them to favorites, browse open events and save them as well to RSVP later. Recruiters are able to create new events, and view all future events available. Teh idea is to connect recruiters to jobseekers by attending posted events and networking.
+Talisman was created to connect Recruiters and Jobseekers in the Gaming industry with ease of use. Talisman strives to create a welcoming environment with an easy way for users to browse through it. Jobseekers can apply for jobs, save them to favorites, browse open events and save them as well to RSVP later. Recruiters are able to create new events, and view all future events available. The idea is to connect recruiters to jobseekers by attending posted events and networking.
 
 ## Features
 
@@ -40,7 +42,3 @@ pip install -r requirements.txt
 ## User Flow
 
 ![userflow_image](./static/userflow0.png)
-
-![homepage_gif](./static/homepage.gif)
-![jobseeeker_gif](./static/jobseeker.gif)
-![recruiter_gif](./static/recruiter.gif)
