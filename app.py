@@ -10,16 +10,16 @@ from secrets import api_id, api_key, secret_key
 
 CURR_USER_KEY = "curr_user"
 
-API_BASE_URL = 'https://api.adzuna.com/v1/api/jobs/us/search/1'
+API_BASE_URL = "https://api.adzuna.com/v1/api/jobs/us/search/1"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql:///capstone-hr'))
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ECHO'] = True
-# app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secret_key)
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    os.environ.get("DATABASE_URL", "postgresql:///capstone-hr"))
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ECHO"] = True
+# app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", secret_key)
 
 # toolbar = DebugToolbarExtension(app)
 
@@ -27,11 +27,11 @@ connect_db(app)
 db.create_all()
 
 
-@app.route('/')
+@app.route("/")
 def starter_page():
     """Show homepage before user signs up."""
 
-    return render_template('index.html')
+    return render_template("index.html")
 
 ##############################################################################
 # JOBSEEKER signup/login
@@ -39,7 +39,7 @@ def starter_page():
 
 @app.before_request
 def add_user_to_g():
-    '''If user is logged in, add curr user to Flask global.'''
+    """If user is logged in, add curr user to Flask global."""
 
     if CURR_USER_KEY in session:
         g.jobseeker = Jobseeker.query.get(session[CURR_USER_KEY])
@@ -49,30 +49,30 @@ def add_user_to_g():
 
 
 def do_login(jobseeker):
-    '''Log in user.'''
+    """Log in user."""
 
     session[CURR_USER_KEY] = jobseeker.id
 
 
 def do_logout():
-    '''Logout user.'''
+    """Logout user."""
 
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
 
 
-@app.route('/logout')
+@app.route("/logout")
 def logout():
-    '''Handle logout.'''
+    """Handle logout."""
 
     do_logout()
-    flash("You have logged out!", 'success')
+    flash("You have logged out!", "success")
     return redirect("/")
 
 
-@app.route('/jobseekers/signup', methods=["GET", "POST"])
+@app.route("/jobseekers/signup", methods=["GET", "POST"])
 def signup():
-    '''Handle signup.'''
+    """Handle signup."""
 
     form = AddJobseekerForm()
 
@@ -91,20 +91,20 @@ def signup():
             db.session.commit()
 
         except IntegrityError:
-            flash("Username already taken, please try again", 'danger')
-            return render_template('jobseekers/signup.html', form=form)
+            flash("Username already taken, please try again", "danger")
+            return render_template("jobseekers/signup.html", form=form)
 
         do_login(jobseeker)
 
         return redirect("/jobseekers/home")
 
     else:
-        return render_template('jobseekers/signup.html', form=form)
+        return render_template("jobseekers/signup.html", form=form)
 
 
-@app.route('/jobseekers/login', methods=["GET", "POST"])
+@app.route("/jobseekers/login", methods=["GET", "POST"])
 def login():
-    '''Handle login.'''
+    """Handle login."""
 
     form = LoginForm()
 
@@ -115,20 +115,20 @@ def login():
         if jobseeker:
             do_login(jobseeker)
             flash(f"Hello, {jobseeker.username}!", "success")
-            session['username'] = jobseeker.username
+            session["username"] = jobseeker.username
             return redirect("/jobseekers/home")
 
-        flash("Invalid username/password, please try again", 'danger')
+        flash("Invalid username/password, please try again", "danger")
 
-    return render_template('jobseekers/login.html', form=form)
+    return render_template("jobseekers/login.html", form=form)
 
 
 ##############################################################################
 # JOBSEEKER routes
 
-@app.route('/jobseekers/home', methods=['GET', 'POST'])
+@app.route("/jobseekers/home", methods=["GET", "POST"])
 def homepage():
-    '''Show current user homepage.'''
+    """Show current user homepage."""
 
     if g.jobseeker:
         jobseeker = Jobseeker.query.get(session[CURR_USER_KEY])
@@ -136,24 +136,25 @@ def homepage():
         responses = requests.get(
             API_BASE_URL,
             params={"app_id": api_id, "app_key": api_key,
-                    "what": "esport", 'location0': 'US'}
+                    "what": "esport", "location0": "US"}
         )
+
         res = responses.json()
-        data = res['results']
+        data = res["results"]
 
         choices = []
 
         for d in data:
-            choices.append(d['location']['display_name'])
+            choices.append(d["location"]["display_name"])
 
-        return render_template('jobseekers/home.html', jobseeker=jobseeker, data=data, choices=choices)
+        return render_template("jobseekers/home.html", jobseeker=jobseeker, data=data, choices=choices)
     else:
-        return render_template('index.html')
+        return render_template("index.html")
 
 
-@app.route('/jobseekers/<int:jobseeker_id>', methods=["GET", "POST"])
+@app.route("/jobseekers/<int:jobseeker_id>", methods=["GET", "POST"])
 def profile(jobseeker_id):
-    '''Update profile for current user.'''
+    """Update profile for current user."""
 
     jobseeker = Jobseeker.query.get_or_404(jobseeker_id)
 
@@ -176,18 +177,22 @@ def profile(jobseeker_id):
             jobseeker.location = form.location.data
 
             db.session.commit()
-            return redirect('/jobseekers/home')
+            return redirect("/jobseekers/home")
 
-        flash("Wrong password, please try again", 'danger')
+        flash("Wrong password, please try again", "danger")
 
-    return render_template('jobseekers/edit.html', form=form)
+    return render_template("jobseekers/edit.html", form=form)
 
 
-@app.route('/jobseekers/favorites')
+@app.route("/jobseekers/favorites")
 def search_location():
-    '''Show favorite jobs page.'''
+    """Show favorite jobs page."""
 
-    return render_template('/jobseekers/favorites.html')
+    if g.recruiter:
+        flash("Access unauthorized, please try again", "danger")
+        return redirect("/recruiters/home")
+
+    return render_template("/jobseekers/favorites.html")
 
 ##############################################################################
 # RECRUITER signup/login
@@ -195,7 +200,7 @@ def search_location():
 
 @app.before_request
 def add_recruiter_to_g():
-    '''If user is logged in, add curr user to Flask global.'''
+    """If user is logged in, add curr user to Flask global."""
 
     if CURR_USER_KEY in session:
         g.recruiter = Recruiter.query.get(session[CURR_USER_KEY])
@@ -205,7 +210,7 @@ def add_recruiter_to_g():
 
 
 def do_login_recruiter(recruiter):
-    '''Log in user.'''
+    """Log in user."""
 
     session[CURR_USER_KEY] = recruiter.id
 
@@ -213,9 +218,9 @@ def do_login_recruiter(recruiter):
 # RECRUITER routes
 
 
-@app.route('/recruiters/signup', methods=["GET", "POST"])
+@app.route("/recruiters/signup", methods=["GET", "POST"])
 def signup_recruiter():
-    '''Handle signup.'''
+    """Handle signup."""
 
     form = AddRecruiterForm()
 
@@ -233,20 +238,20 @@ def signup_recruiter():
             db.session.commit()
 
         except IntegrityError:
-            flash("Username already taken, please try again", 'danger')
-            return render_template('recruiters/signup.html', form=form)
+            flash("Username already taken, please try again", "danger")
+            return render_template("recruiters/signup.html", form=form)
 
         do_login_recruiter(recruiter)
 
         return redirect("/recruiters/home")
 
     else:
-        return render_template('recruiters/signup.html', form=form)
+        return render_template("recruiters/signup.html", form=form)
 
 
-@app.route('/recruiters/login', methods=["GET", "POST"])
+@app.route("/recruiters/login", methods=["GET", "POST"])
 def login_recruiters():
-    '''Handle login.'''
+    """Handle login."""
 
     form = LoginForm()
 
@@ -257,34 +262,34 @@ def login_recruiters():
         if recruiter:
             do_login_recruiter(recruiter)
             flash(f"Hello, {recruiter.username}!", "success")
-            session['username'] = recruiter.username
+            session["username"] = recruiter.username
             return redirect("/recruiters/home")
 
-        flash("Invalid username/password, please try again", 'danger')
+        flash("Invalid username/password, please try again", "danger")
 
-    return render_template('recruiters/login.html', form=form)
+    return render_template("recruiters/login.html", form=form)
 
 
-@app.route('/recruiters/home')
+@app.route("/recruiters/home")
 def homepage_recruiters():
-    '''Show homepage after recruiter logs in.'''
+    """Show homepage after recruiter logs in."""
 
     if g.recruiter:
         recruiter = Recruiter.query.get(session[CURR_USER_KEY])
 
         events = Event.query.all()
 
-        return render_template('recruiters/home.html', recruiter=recruiter, events=events)
+        return render_template("recruiters/home.html", recruiter=recruiter, events=events)
 
     else:
         flash("Access unauthorized, please login as Recruiter to view the page", "danger")
         return redirect("/")
-        return render_template('index.html')
+        return render_template("index.html")
 
 
-@app.route('/recruiters/<int:recruiter_id>', methods=["GET", "POST"])
+@app.route("/recruiters/<int:recruiter_id>", methods=["GET", "POST"])
 def profile_recruiters(recruiter_id):
-    '''Update profile for current user.'''
+    """Update profile for current user."""
 
     recruiter = Recruiter.query.get_or_404(recruiter_id)
 
@@ -306,27 +311,27 @@ def profile_recruiters(recruiter_id):
             recruiter.location = form.location.data
 
             db.session.commit()
-            return redirect('/recruiters/home')
+            return redirect("/recruiters/home")
 
-        flash("Wrong password, please try again", 'danger')
+        flash("Wrong password, please try again", "danger")
 
-    return render_template('recruiters/edit.html', form=form)
+    return render_template("recruiters/edit.html", form=form)
 
 
-@app.route('/events')
+@app.route("/events")
 def events_list():
-    '''Show events list.'''
+    """Show events list."""
 
     events = Event.query.all()
     recruiters = Recruiter.query.all()
     jobseekers = Jobseeker.query.all()
 
-    return render_template('events.html', events=events, recruiters=recruiters, jobseekers=jobseekers)
+    return render_template("events.html", events=events, recruiters=recruiters, jobseekers=jobseekers)
 
 
-@app.route('/events/new', methods=['GET', 'POST'])
+@app.route("/events/new", methods=["GET", "POST"])
 def create_event():
-    '''Create a new event and add to the event list'''
+    """Create a new event and add to the event list"""
 
     if not g.recruiter:
         flash("Access unauthorized, please login as Recruiter to view this page", "danger")
@@ -345,14 +350,14 @@ def create_event():
                           date=date, location=location, recruiters_id=recruiter.id)
         g.recruiter.events.append(new_event)
         db.session.commit()
-        return redirect('/recruiters/home')
+        return redirect("/recruiters/home")
     else:
-        return render_template('new_event.html', form=form)
+        return render_template("new_event.html", form=form)
 
 
-@app.route('/events/<int:event_id>/delete', methods=['GET', 'POST'])
+@app.route("/events/<int:event_id>/delete", methods=["GET", "POST"])
 def delete_event(event_id):
-    '''Delete an event.'''
+    """Delete an event."""
 
     if not g.recruiter:
         flash("Access unauthorized, please login as Recruiter to view this page", "danger")
@@ -363,4 +368,4 @@ def delete_event(event_id):
     db.session.delete(event)
     db.session.commit()
 
-    return redirect('/recruiters/home')
+    return redirect("/recruiters/home")

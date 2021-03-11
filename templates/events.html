@@ -1,12 +1,18 @@
-{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Home Page{% endblock %} {% block content %}
 
 <div class="container my-3">
 	<div class="row">
+		<div class="container col-6">
+			<img
+				class="img img-fluid"
+				src="https://images.unsplash.com/photo-1612832021967-c9493a4591d6?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+			/>
+		</div>
 		<div class="container col-6 text-center">
 		</br>
 			<div class="container">
 				<h3>Future Events</h3>
-				<h6 style='font-style: italic'>You can modify an event on Recruiter's home page</a>.</h6>
+				<h6 class="helper-text-italic">You can modify an event on Recruiter's home page.</h6>
 				<ul>
 					{% for evt in events %}
 					<li>
@@ -14,11 +20,9 @@
 							<div class="card">
 								<div class="card-body">
 									<h5 class="card-title">{{evt.title}}</h5>
-									<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
-									<p style="overflow: scroll; height: 50px" class="card-text">{{evt.description}}</p>
-									{% if g.jobseeker %}
-											<a data-id="{{evt.id}}" href="#" class="card-link events"><i class="far fa-star"></i> Favorite</a>
-										{% endif %}
+									<span class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
+									<p class="card-text evt-desc">{{evt.description}}</p>
+								
 								</div>
 							</div>
 						</div>
@@ -27,12 +31,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="container col-6">
-			<img
-				class="img img-fluid"
-				src="https://images.unsplash.com/photo-1516149893016-813d9a01d5d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-			/>
-		</div>
+		
 	</div>
 </div>
 

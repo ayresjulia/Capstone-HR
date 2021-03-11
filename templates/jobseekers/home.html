@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Home Page{% endblock %} {% block content %}
 
 <div class="container my-3">
 	<div class="row">
@@ -27,12 +27,11 @@
 					</form>
 				</div>
 				<div class="container">
-					<div class="container my-3">
+					<div class="container my-3" id="filtered-job">
 						<div class="card" id="display"></div>
 					</div>
 				</div>
 
-				<p class="text-center"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
 				<div class="container">
 					{% for d in data %}
 					<div data-id="{{d.id}}">
@@ -40,8 +39,8 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="card-title title">{{d.title}}</div>
-									<p style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted location">{{d.location['display_name']}}</p>
-									<p style="height: 70px" class="card-text overflow-auto description">{{d.description}}</p>
+									<p class="card-subtitle mb-2 text-muted location">{{d.location["display_name"]}}</p>
+									<p class="card-text overflow-auto description">{{d.description}}</p>
 									<a data-id="{{d.id}}" href="#" class="card-link favorites">Save to Favorites</a>
 									<a href="{{d.redirect_url}}" target="_blank" class="card-link">View/Apply</a>
 								</div>

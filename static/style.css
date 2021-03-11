@@ -1,5 +1,5 @@
 body {
-	font-family: 'Lora', serif;
+	font-family: "Lora", serif;
 	background-color: #ecf2f8;
 }
 h1,
@@ -8,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Montserrat", sans-serif;
 	font-weight: 300;
 }
 
@@ -23,4 +23,32 @@ ul {
 .carousel-caption {
 	height: 100px;
 	padding: 10px;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.card-subtitle {
+	font-size: 15px;
+	font-style: italic;
+}
+
+.description {
+	height: 70px;
+}
+
+.evt-desc {
+	overflow: scroll;
+	height: 50px;
+}
+
+.arrow-style {
+	width: 50px;
+}
+
+.helper-text-italic {
+	font-style: italic;
 }

@@ -23,22 +23,66 @@ Talisman was created to connect Recruiters and Jobseekers in the Gaming industry
 
 ## Installation
 
-To install all libraries and dependencies, use:
+- clone repository using command line
+  
+```
+$ git clone https://github.com/ayresjulia/Capstone-HR.git
+```
+
+- create virtual environment and activate it
 
 ```
-pip install -r requirements.txt
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
+- install all requirements 
+
+```
+$ pip install -r requirements.txt
+```
+
+- start the app in localhost
+
+```
+$ flask run
+```
+
+## Tests
+
+- to run tests, use respective commands in command line
+  
+```
+$ python3 -m test_app.py
+$ python3 -m test_models.py
 ```
 
 ## API Used
 
 [Adzuna API](https://api.adzuna.com)
 
-## Database Schema
+## Tech Stack
 
-*in works* connect Jobseekers to events db on star click
+- Web/Frontend
+  - JavaScript | CSS | HTML
+  
+- Frontend Libraries/Frameworks
+  - Bootstrap | jQuery | Axios | Jinja
+  
+- Server/Backend
+  - Python | SQL | PostgreSQL
+
+- Backend Libraries/Frameworks
+  - Flask | Flask-SQLAlchemy
+
+## Database Schema
 
 ![db_image](./static/db.png)
 
 ## User Flow
 
 ![userflow_image](./static/userflow0.png)
+
+## Talisman Gaming Job Search App v2.0
+
+- connect jobseekers and events db tables, by creating favorite events feature

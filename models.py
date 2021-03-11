@@ -14,9 +14,9 @@ def connect_db(app):
 
 
 class Jobseeker(db.Model):
-    '''Jobseekers in the system.'''
+    """Jobseekers in the system."""
 
-    __tablename__ = 'jobseekers'
+    __tablename__ = "jobseekers"
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Text, nullable=False, unique=True)
@@ -29,13 +29,13 @@ class Jobseeker(db.Model):
     bio = db.Column(db.Text)
     location = db.Column(db.Text)
 
-    events = db.relationship('Event')
+    events = db.relationship("Event")
 
     @classmethod
     def signup(cls, first_name, last_name, username, email, password, profile_img, bio, location):
         """Sign up Jobseeker. Hashes password and adds user to system."""
 
-        hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
+        hashed_pwd = bcrypt.generate_password_hash(password).decode("UTF-8")
 
         jobseeker = Jobseeker(
             first_name=first_name,
@@ -53,7 +53,7 @@ class Jobseeker(db.Model):
 
     @classmethod
     def authenticate(cls, username, password):
-        """Find jobseeker with 'username' and 'password'."""
+        """Find jobseeker with "username" and "password"."""
 
         jobseeker = cls.query.filter_by(username=username).first()
 
@@ -66,9 +66,9 @@ class Jobseeker(db.Model):
 
 
 class Recruiter(db.Model):
-    '''Jobseekers in the system.'''
+    """Jobseekers in the system."""
 
-    __tablename__ = 'recruiters'
+    __tablename__ = "recruiters"
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.Text, nullable=False, unique=True)
@@ -80,13 +80,13 @@ class Recruiter(db.Model):
     password = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text)
 
-    events = db.relationship('Event')
+    events = db.relationship("Event")
 
     @classmethod
     def signup(cls, username, email, company_name, password, profile_img, about, location):
         """Sign up Recruiter. Hashes password and adds user to system."""
 
-        hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
+        hashed_pwd = bcrypt.generate_password_hash(password).decode("UTF-8")
 
         recruiter = Recruiter(
             username=username,
@@ -103,12 +103,13 @@ class Recruiter(db.Model):
 
     @classmethod
     def authenticate(cls, username, password):
-        """Find recruiter with 'username' and 'password'."""
+        """Find recruiter with "username" and "password"."""
 
         recruiter = cls.query.filter_by(username=username).first()
 
         if recruiter:
-            is_auth = bcrypt.check_password_hash(recruiter.password, password)
+            is_auth = bcrypt.check_password_hash(
+                recruiter.password, password)
             if is_auth:
                 return recruiter
 
@@ -116,9 +117,9 @@ class Recruiter(db.Model):
 
 
 class Event(db.Model):
-    '''Events in the system.'''
+    """Events in the system."""
 
-    __tablename__ = 'events'
+    __tablename__ = "events"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.Text, nullable=False, unique=True)
@@ -126,9 +127,9 @@ class Event(db.Model):
     date = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text, nullable=False)
     recruiters_id = db.Column(db.Integer, db.ForeignKey(
-        'recruiters.id', ondelete='CASCADE'), nullable=False)
+        "recruiters.id", ondelete="CASCADE"), nullable=False)
     jobseeker_id = db.Column(db.Integer, db.ForeignKey(
-        'jobseekers.id', ondelete='CASCADE'))
+        "jobseekers.id", ondelete="CASCADE"))
 
-    recruiter = db.relationship('Recruiter')
-    jobseeker = db.relationship('Jobseeker')
+    recruiter = db.relationship("Recruiter")
+    jobseeker = db.relationship("Jobseeker")

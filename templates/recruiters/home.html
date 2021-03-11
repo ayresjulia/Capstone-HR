@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}Home Page{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Home Page{% endblock %} {% block content %}
 
 <div class="container my-3">
 	<div class="row">
@@ -16,7 +16,8 @@
 
 		<div class="container col-md-6">
 			<div class="container">
-				<h4 class="text-center">Future Events :</h4>
+				<h3 class="text-center">Future Events</h3>
+				<h6 class="helper-text-italic text-center">There are no future events at the moment, feel free to add a new event.</h6>
 				<ul>
 					{% for evt in events %}
 					<li>
@@ -25,9 +26,9 @@
 								<div class="card-body">
 									<h5 class="card-title">{{evt.title}}</h5>
 
-									<span style="font-size: 15px; font-style: italic" class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
+									<span class="card-subtitle mb-2 text-muted">{{evt.date}} - {{evt.location}}</span>
 
-									<p style="overflow: scroll; height: 50px" class="card-text">{{evt.description}}</p>
+									<p class="card-text evt-desc">{{evt.description}}</p>
 									{% if evt.recruiters_id == recruiter.id %}
 									<form method="POST" action="/events/{{evt.id}}/delete">
 										<button class="btn btn-danger">Delete Event</button>
