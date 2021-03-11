@@ -14,8 +14,8 @@ API_BASE_URL = "https://api.adzuna.com/v1/api/jobs/us/search/1"
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    os.environ.get("DATABASE_URL", "postgresql:///capstone-hr"))
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    "DATABASE_URL", "postgresql:///capstone-hr")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 # app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
