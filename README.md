@@ -25,36 +25,36 @@ Talisman was created to connect Recruiters and Jobseekers in the Gaming industry
 
 - clone repository using command line
   
-```
-$ git clone https://github.com/ayresjulia/Capstone-HR.git
+```terminal
+$git clone https://github.com/ayresjulia/Capstone-HR.git
 ```
 
 - create virtual environment and activate it
 
-```
-$ python3 -m venv venv
-$ source venv/bin/activate
+```terminal
+$python3 -m venv venv
+$source venv/bin/activate
 ```
 
-- install all requirements 
+- install all requirements
 
-```
-$ pip install -r requirements.txt
+```terminal
+$pip install -r requirements.txt
 ```
 
 - start the app in localhost
 
-```
-$ flask run
+```terminal
+$flask run
 ```
 
 ## Tests
 
 - to run tests, use respective commands in command line
   
-```
-$ python3 -m test_app.py
-$ python3 -m test_models.py
+```terminal
+$python3 -m test_app.py
+$python3 -m test_models.py
 ```
 
 ## API Used

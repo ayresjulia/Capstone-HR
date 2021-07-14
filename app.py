@@ -3,7 +3,7 @@ from forms import AddJobseekerForm, AddRecruiterForm, LoginForm, JobseekerEditFo
 import os
 import requests
 from flask import Flask, render_template, request, flash, redirect, session, g
-from flask_debugtoolbar import DebugToolbarExtension
+# from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 # from secrets import api_id, api_key, secret_key
 
@@ -20,6 +20,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 # app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config["SECRET_KEY"] = os.environ["secret_key"]
+app.config["app_id"] = os.environ["app_id"]
+app.config["app_key"] = os.environ["app_key"]
 
 # toolbar = DebugToolbarExtension(app)
 
@@ -136,10 +138,9 @@ def homepage():
 
         responses = requests.get(
             API_BASE_URL,
-            params={"app_id": api_id, "app_key": api_key,
+            params={"app_id": app_id, "app_key": app_key,
                     "what": "esport", "location0": "US"}
         )
-
         res = responses.json()
         data = res["results"]
 
