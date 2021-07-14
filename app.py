@@ -22,7 +22,6 @@ app.config["SQLALCHEMY_ECHO"] = True
 app.config["SECRET_KEY"] = os.environ["secret_key"]
 app.config["app_id"] = os.environ.get("app_id")
 app.config["app_key"] = os.environ.get("app_key")
-
 # toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
@@ -138,7 +137,7 @@ def homepage():
 
         responses = requests.get(
             API_BASE_URL,
-            params={"app_id": app_id, "app_key": app_key,
+            params={"app_id": app.config.get("app_id"), "app_key": app.config.get("app_key"),
                     "what": "esport", "location0": "US"}
         )
         res = responses.json()
